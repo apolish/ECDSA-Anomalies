@@ -22,7 +22,7 @@
 \maketitle
 
 \begin{abstract}
-This paper presents three novel vulnerabilities in the Elliptic Curve Digital Signature Algorithm (ECDSA), discovered through mathematical analysis and empirical exploration. Each vulnerability enables specific attack vectors that compromise the algorithm's reliability under certain assumptions. We provide theoretical foundations, demonstrate practical examples based on a test elliptic curve, and discuss implications for digital signature security.
+This paper presents two novel vulnerabilities in the Elliptic Curve Digital Signature Algorithm (ECDSA), discovered through mathematical analysis and empirical exploration. Each vulnerability enables specific attack vectors that compromise the algorithm's reliability under certain assumptions. We provide theoretical foundations, demonstrate practical examples based on a test elliptic curve, and discuss implications for digital signature security.
 \end{abstract}
 
 \textbf{Keywords:} ECDSA, secp256k1, Cryptographic vulnerabilities, Elliptic curves, ECC
@@ -46,7 +46,7 @@ The Elliptic Curve Digital Signature Algorithm (ECDSA) is a widely adopted crypt
 
 Despite its strong theoretical foundation, ECDSA's security relies on several critical assumptions, such as the uniqueness of the private key given a public key and the unpredictability of nonces used during signature generation. Any deviation from these assumptions—whether due to implementation flaws, randomness issues, or hidden algebraic patterns—can lead to serious vulnerabilities.
 
-This paper introduces and analyses three algebraic anomalies in ECDSA signatures, each revealing structural weaknesses that may allow private key recovery even under ideal conditions. Unlike previous attacks that rely on biased or reused nonces, our findings demonstrate that vulnerabilities can arise from the intrinsic mathematical properties of ECDSA itself. These results challenge long-standing beliefs about ECDSA's invulnerability to attacks under perfect randomness and lay the groundwork for a deeper understanding of its algebraic structure.
+This paper introduces and analyses two algebraic anomalies in ECDSA signatures, each revealing structural weaknesses that may allow private key recovery even under ideal conditions. Unlike previous attacks that rely on biased or reused nonces, our findings demonstrate that vulnerabilities can arise from the intrinsic mathematical properties of ECDSA itself. These results challenge long-standing beliefs about ECDSA's invulnerability to attacks under perfect randomness and lay the groundwork for a deeper understanding of its algebraic structure.
 
 \section{ECDSA Background}
 ECDSA operates over a set of mathematical operations defined on an elliptic curve \( E \) over a finite field \( \mathbb{F}_p \). The equation describes the curve:
@@ -99,17 +99,13 @@ Let the standard ECDSA signature be defined as:
 \[
 s = k^{-1}(z + xr) \mod n
 \]
-Multiplying both sides by \( k \):
-\[
-sk = z + xr \mod n
-\]
 Let:
 \[
 s_{zk} = zk \mod n, \quad s_{rxk} = rxk \mod n
 \]
 Then:
 \[
-s = s_{zk} + s_{rxk} \mod n
+s = s_{zk} + s_{rxk}
 \]
 Also define:
 \[
@@ -151,24 +147,18 @@ All transactions analyzed in this paper were generated using a test elliptic cur
 
 This simplified elliptic curve was used in place of secp256k1 to allow efficient large-scale experimentation. Over \textbf{600 million} ECDSA signatures were generated and tested on this curve under ideal conditions (unique private key, uniformly random nonce). The vulnerabilities presented in this study were identified and validated within this high-volume synthetic dataset. Given that the signature function depends on three independent parameters—
 the private key $x$, the message hash $z$, and the nonce $k$—all uniformly drawn from the set $\{1, 2, \dots, n-1\}$,
-the theoretical space of unique transaction instances is:
-
+the theoretical space of unique transaction instances is:   
 \[
 (x, z, k) \in \{1, \dots, n-1\}^3 \quad \Rightarrow \quad \text{Total space size} = (n - 1)^3
 \]
-
 For the experimental curve with $n = 9967$, the total number of possible unique ECDSA transaction instances equals:
-
 \[
 (9967 - 1)^3 = 9966^3 \approx 9.89 \times 10^{11}
 \]
-
-In this study, we generated and analyzed a representative sample of $600\,000\,000$ transaction instances, which corresponds to approximately:
-
+In this study, we generated and analyzed a representative sample of $600\,052\,440$ transaction instances, which corresponds to approximately:
 \[
 \frac{6 \times 10^8}{(n - 1)^3} \approx 0.06\%
 \]
-
 of the full theoretical transaction space. Below are 10 transactions (Tx) for all three vulnerability types (cases A, B), which were taken from a total transaction set of 600 million.
 
 \begin{center}
@@ -191,37 +181,45 @@ Tx & Case & $s$ & $s_{zk}$ & $s_{rxk}$ & $s_{zr}$ & $z$ & $r$ & $x$ & $k$ & $q$ 
 \end{tabular}
 \end{center}
 
+\noindent\textbf{Statistical Observations from Experimental Simulation.}
+To evaluate the practical emergence of algebraic anomalies under ideal random nonce conditions, we conducted a large-scale simulation on a test elliptic curve defined over a small prime field ($p = 10007$, $n = 9967$).
+
+A total of \textbf{600,052,440 randomly generated ECDSA transactions} were created, using uniformly sampled values for the private key $x$, message hash $z$, and ephemeral key $k$. The signature generation process strictly followed the canonical ECDSA equation:
+\[
+s = (z + r \cdot x) \cdot k^{-1} \bmod n
+\]
+
+Among this dataset:
+\begin{itemize}
+  \item \textbf{14,623 transactions} were identified as matching \textbf{Case A} conditions, where the multiplier $m_1 = 1$, enabling near-instant private key recovery.
+  \item \textbf{5 transactions} satisfied \textbf{Case B} conditions, where $m_1 = m_2 > 1$, allowing recovery through a closed-form analytical root.
+\end{itemize}
+
+These results highlight that while such anomalies are rare, they are not nonexistent even under ideal cryptographic randomness, and their emergence is quantifiable at scale.
+
+
 \section{Vulnerability A: When \texorpdfstring{$m_1 = 1$}{m1 = 1} is satisfied}
 
 \subsection{Theory}
 \textit{(see Case A of "Vulnerability detection mechanism")}
 
 Let a standard ECDSA signature be defined as:
-
 \[
 s = k^{-1}(z + r \cdot x) \mod n
 \]
-
-Multiplying both sides by $k$:
-
-\[
-s \cdot k = z + r \cdot x \mod n
-\]
-
 We define:
 \[
 s_{zk} = z \cdot k \mod n,\quad
 s_{rxk} = r \cdot x \cdot k \mod n
 \]
 \[
-s = s_{zk} + s_{rxk} \mod n
+s = s_{zk} + s_{rxk}
 \]
-
 Suppose the first component $s_{zk}$ can be expressed as:
 \[
 s_{zk} = a \cdot m_1
 \]
-where $a = s \mod q$ and $q = z \cdot r - s$, then:
+where $a = s \mod q$ and $q = s_{zr} - s \quad \text{(only if } s_{zr} > s \text{)}$, and $s_{zr} = zr \mod n$ then:
 \begin{enumerate}
     \item Compute the nonce:
     \[
@@ -268,23 +266,17 @@ Let a standard ECDSA signature be defined as:
 \[
 s = k^{-1}(z + r \cdot x) \mod n
 \]
-Multiplying both sides by $k$ yields:
-\[
-s \cdot k = z + r \cdot x \mod n
-\]
-
 Let us define:
 \[
 s_{zk} = z \cdot k \mod n, \quad s_{rxk} = r \cdot x \cdot k \mod n
 \]
 \[
-s = s_{zk} + s_{rxk} \mod n
+s = s_{zk} + s_{rxk}
 \]
 We also define the auxiliary public value:
 \[
 s_{zr} = z \cdot r \mod n
 \]
-
 In this case, we are interested in signatures where the following equality is satisfied:
 \[
 m_1 = \frac{s_{zk}}{a} = \frac{s + s_{zr}}{s_{rxk}} = m_2,\quad \text{and} \quad m_1 > 1
