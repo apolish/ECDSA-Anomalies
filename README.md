@@ -15,8 +15,10 @@ ECDSA-Anomalies/
 ├── README.md
 ├── LICENSE
 ├── src/
+│   |── find_curve.py                          # Script to find test elliptic curve parameters
 │   |── secp256k1.py                           # Script to generate millions of test transactions
-│   └── find_curve.py                          # Script to find test elliptic curve parameters
+│   |── verify_case_a.py                       # Script to verify case A using public data
+│   └── verify_case_b.py                       # Script to verify case B using public data
 ├── data/
 │   ├── transaction_list_20250529191555.txt    # Sample categorized anomalies
 │   ├── transaction_list_20250529194848.txt    # Sample categorized anomalies
@@ -62,4 +64,13 @@ Clone the repository and run the transaction generator:
 git clone https://github.com/YOUR_USERNAME/ECDSA-Anomalies.git
 cd ECDSA-Anomalies/src
 python secp256k1.py
+```
+
+### 🔐 Verification Tool
+
+Run this to validate Case A, B transactions using public parameters:
+
+```bash
+python src/verify_case_a.py
+python src/verify_case_b.py
 ```
