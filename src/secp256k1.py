@@ -270,7 +270,7 @@ if __name__ == "__main__":
                                 m1 = Fraction(s_zk, a)
                                 m2 = Fraction(s + s_zr, s_rxk)
                                 if m1.denominator == 1:
-                                    if m1 != m2 and m1 == 1:
+                                    if m1 != m2 and m1 == 1: # Remove 'and m1 == 1' condition when you need to get all m1 values, not only filtered by m1 = 1
                                         case_A_count += 1
                                         ecdsa_data.append(['A', s, s_zk, s_rxk, s_zr, z, r, x, k, q, a, m1, m2])
                                     elif m1 == m2 and m1 > 1:
