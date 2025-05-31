@@ -52,7 +52,7 @@ def find_point_on_curve(p, a, b):
 
 
 def compute_curve_order(p, a, b):
-    count = 1  # включає точку на нескінченності
+    count = 1  # includes a point at infinity
     for x in range(p):
         rhs = (x**3 + a * x + b) % p
         roots = sympy.sqrt_mod(rhs, p, all_roots=True)
@@ -94,6 +94,6 @@ def find_curve_with_generator(p, n, max_a=50, max_b=50, max_results=10, g_x_more
 
 # === MAIN ENTRY POINT ===
 if __name__ == "__main__":
-    p = 10007 #99391
-    n = 9967 #95273
+    p = 10007
+    n = 9967
     find_curve_with_generator(p, n, max_a=50, max_b=50, max_results=10, g_x_more=1, g_y_more=1)
