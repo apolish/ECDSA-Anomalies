@@ -74,3 +74,9 @@ Run this to validate Case A, B transactions using public parameters:
 python src/verify_case_a.py
 python src/verify_case_b.py
 ```
+
+# Research paper: Algebraic Anomalies in ECDSA Signatures Enabling Private Key Recovery Under Ideal Random Nonces
+
+[![Download PDF](https://img.shields.io/badge/Paper-Download-blue)](./paper/Algebraic_Anomalies_in_ECDSA.pdf)
+
+This repository accompanies the research paper:
