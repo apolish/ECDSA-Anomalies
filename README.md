@@ -55,6 +55,7 @@ Released under MIT License (see LICENSE file).
 The full research paper can be viewed and downloaded here:
 
 📄 [Algebraic_Anomalies_in_ECDSA.pdf](./paper/Algebraic_Anomalies_in_ECDSA.pdf)
+[![Download PDF](https://img.shields.io/badge/Paper-Download-blue)](./paper/Algebraic_Anomalies_in_ECDSA.pdf)
 
 ## 🚀 Quick Start
 
@@ -74,8 +75,3 @@ Run this to validate Case A, B transactions using public parameters:
 python src/verify_case_a.py
 python src/verify_case_b.py
 ```
-
-### Research paper: Algebraic Anomalies in ECDSA Signatures Enabling Private Key Recovery Under Ideal Random Nonces
-
-This repository accompanies the research paper:
-[![Download PDF](https://img.shields.io/badge/Paper-Download-blue)](./paper/Algebraic_Anomalies_in_ECDSA.pdf)
