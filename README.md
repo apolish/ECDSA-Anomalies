@@ -54,7 +54,6 @@ Released under MIT License (see LICENSE file).
 
 The full research paper can be viewed and downloaded here:
 
-📄 [Algebraic_Anomalies_in_ECDSA.pdf](./paper/Algebraic_Anomalies_in_ECDSA.pdf)
 [![Download PDF](https://img.shields.io/badge/Paper-Download-blue)](./paper/Algebraic_Anomalies_in_ECDSA.pdf)
 
 ## 🚀 Quick Start
