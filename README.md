@@ -43,7 +43,7 @@ ECDSA-Anomalies/
 If you use this repository for your research or teaching, please cite the original paper:
 
 ```
-[To be filled after publication or preprint DOI]
+https://doi.org/10.6084/m9.figshare.29223701
 ```
 
 ## 🔗 License
