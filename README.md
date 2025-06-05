@@ -57,6 +57,13 @@ The full research paper can be viewed and downloaded here:
 
 [![Download PDF](https://img.shields.io/badge/Paper-Download-blue)](./paper/Algebraic_Anomalies_in_ECDSA.pdf)
 
+## 🌐 Grant Proposal Links
+
+This project was submitted to the Zcash Community Grants program. You can view the full discussion and official submission here:
+
+- [Forum thread](https://forum.zcashcommunity.com/t/grant-proposal-research-on-algebraic-anomalies-in-ecdsa-signatures-for-zcash-transactions/51389)
+- [Zcash GitHub grant issue](https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/48)
+
 ## 🚀 Quick Start
 
 Clone the repository and run the transaction generator:
