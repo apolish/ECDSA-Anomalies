@@ -20,15 +20,13 @@ ECDSA-Anomalies/
 │   |── verify_case_a.py                       # Script to verify case A using public data
 │   └── verify_case_b.py                       # Script to verify case B using public data
 ├── data/
-│   ├── transaction_list_20250529191555.txt    # 100M. Test elliptic curve. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
-│   ├── transaction_list_20250529194848.txt    # 100M. Test elliptic curve. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
-│   ├── transaction_list_20250529202417.txt    # 100M. Test elliptic curve. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
-│   ├── transaction_list_20250529205625.txt    # 100M. Test elliptic curve. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
-│   ├── transaction_list_20250529212843.txt    # 100M. Test elliptic curve. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
-│   ├── transaction_list_20250529220308.txt    # 100M. Test elliptic curve. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
-│   ├── transaction_list_20250530115539.txt    # 100M. Test elliptic curve. Sample categorized anomalies (Cases A: m1 >= 1, B: m1 = m2 > 1)
-|   ├── transaction_list_20250604211933.txt    # 1M.   Test elliptic curve. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1, C: m1.denominator != 1)
-|   └── transaction_list_20250604232543.txt    # 1M.   Real (secp256k1) elliptic curve. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1, C: m1.denominator != 1)
+│   ├── transaction_list_20250529191555.txt    # 100M. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
+│   ├── transaction_list_20250529194848.txt    # 100M. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
+│   ├── transaction_list_20250529202417.txt    # 100M. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
+│   ├── transaction_list_20250529205625.txt    # 100M. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
+│   ├── transaction_list_20250529212843.txt    # 100M. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
+│   ├── transaction_list_20250529220308.txt    # 100M. Sample categorized anomalies (Cases A: m1 = 1, B: m1 = m2 > 1)
+│   └── transaction_list_20250530115539.txt    # 100M. Sample categorized anomalies (Cases A: m1 >= 1, B: m1 = m2 > 1)
 └── paper/
     ├── Algebraic_Anomalies_in_ECDSA.pdf
     └── Algebraic_Anomalies_in_ECDSA.tex
