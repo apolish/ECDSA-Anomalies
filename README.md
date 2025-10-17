@@ -60,7 +60,7 @@ The full research paper can be viewed and downloaded here:
 
 ## 🌐 Grant Proposal Links
 
-This project was submitted to the Zcash Community Grants program. You can view the full discussion and official submission here:
+This project was submitted to the Zcash Community Grants program. You can view the whole discussion and official submission here:
 
 - [Forum thread](https://forum.zcashcommunity.com/t/grant-proposal-research-on-algebraic-anomalies-in-ecdsa-signatures-for-zcash-transactions/51389)
 - [Zcash GitHub grant issue](https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/48)
@@ -77,9 +77,10 @@ python secp256k1.py
 
 ### 🔐 Verification Tool
 
-Run this to validate Case A, B transactions using public parameters:
+Run this to validate Case A and B transactions using public parameters:
 
 ```bash
 python src/verify_case_a.py
 python src/verify_case_b.py
 ```
+### STATUS: Research officially completed. The current repository is not active.
